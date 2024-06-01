@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <!-- <link rel="stylesheet" href="../CSS/estils-quiSom.css" /> -->
+    <meta name="author" content="Anass Bouraada" />
+    <link
+      rel="shortcut icon"
+      href="Imatges/FaviconQuiSom.png"
+      type="image/x-icon"
+    />
+    <script
+      src="https://kit.fontawesome.com/eb496ab1a0.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Qui Som</title>
+  </head>
+  <body class="font-sans flex flex-col h-screen">
+    <!-- Encapçalat (Header) -->
+    <header class="bg-gray-600 p-4">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-yellow-500 mb-4 md:mb-0 md:mr-4">
+          <h1 class="text-4xl font-serif">GOLD GYM A.B</h1>
+        </div>
+        <div class="flex items-center">
+          <a
+            href="index.html"
+            class="text-white border border-gray-300 px-4 py-2 rounded mb-4 md:mb-0 md:mr-4"
+            >Enrrere</a
+          >
+          <div>
+            <img
+              src="Imatges/Logo_final.svg"
+              class="w-30 h-20"
+              alt="Logo Gold Gym"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contingut principal -->
+    <div class="flex flex-col md:flex-row flex-1">
+      <!-- Informacio de contacte i formulari de login -->
+      <div style="background-image: url('Imatges/Fonsformulari.png'); background-size: cover;" class="md:flex-1 p-4 flex flex-col justify-center items-center">
+        <form class="Login max-w-md mx-auto bg-white p-8 rounded-md shadow-md w-full md:w-2/3 lg:w-1/2" id="login-form">
+          <h5 class="text-2xl mb-4 text-center text-blue-500">Formulari Login</h5>
+          <input type="text" id="username" name="username" placeholder="username" class="Caracters mb-2 p-2 w-full border border-gray-300 rounded-md" required />
+          <input type="password" id="password" name="password" placeholder="password" class="Caracters mb-2 p-2 w-full border border-gray-300 rounded-md" required />
+          <!-- Canvi del type del botó a submit -->
+          <button id="login-button" type="submit" class="Boto bg-blue-500 text-white p-2 rounded-md cursor-pointer w-full">Accedeix</button>        <p class="mt-2 text-center">
+            <a href="#" class="text-blue-500">Has oblidat la teva contrasenya?</a>
+          </p>
+        </form>
+      </div>
+  
+      <!-- Mapa i historia de la instalacio -->
+      <div class="md:flex-1 flex flex-col">
+        <!-- Historia -->
+        <div class="mb-4 md:flex-1">
+          <div
+            class="Historia w-full h-full p-4 bg-gray-100 rounded-5xl shadow-md"
+          >
+            <h1 class="text-3xl mb-4 text-center">La Nostre Història</h1>
+            <div class="flex">
+              <p class="mb-4 md:flex-1">
+                Gold Gym A.B és molt més que un simple gimnàs. La nostra
+                història comença amb la passió per la salut i el benestar.
+              </p>
+            </div>
+            <p class="mt-4">
+              Amb més de dues dècades d'experiència, hem crescut fins a tenir
+              més de 5 instal·lacions per tota Catalunya. Cada centre esportiu
+              compta amb una comunitat activa de més de 1.500 abonats.
+            </p>
+            <img
+              src="Imatges/Novetats3.webp"
+              alt="Imatge Història"
+              class="w-full md:w-1/2 h-32 object-cover rounded-md float-right mb-4 md:ml-4"
+              style="clip-path: circle(60%);"
+            />
+          </div>
+        </div>
+        <!-- Mapa -->
+        <div class="md:flex-1">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11870.49239089881!2d2.234070660145767!3d41.94394967035719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a521350171437d%3A0xc00ba1d2a2680224!2s08503%20Gurb%2C%20Barcelona!5e0!3m2!1ses!2ses!4v1673373241830!5m2!1ses!2ses"
+            class="w-full h-full p-4"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peu de pàgina (Footer) -->
+    <footer class="Footer bg-black text-white p-4 md:p-8">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto"
+      >
+        <div class="mb-4 md:mb-0">
+          <a href="#">
+            <img
+              src="Imatges/Logo-Menu.png"
+              alt="Logo de gold gym"
+              class="w-20 h-20"
+            />
+          </a>
+        </div>
+        <div class="mb-4 md:mb-0 text-center md:text-left">
+          <h2 class="text-2xl mb-2">SOBRE NOSALTRES</h2>
+          <p class="mb-2">
+            La instalació es va inaugurar el 23 de abril de 2017
+          </p>
+          <p>
+            Gold Gym A.B es un dels millors equipaments d'esport i benestar de
+            la comarca d'osona
+          </p>
+        </div>
+        <div class="text-center md:text-left">
+          <h2 class="text-2xl mb-2">SEGUEIX-NOS</h2>
+          <div class="xarxes-socials flex space-x-2">
+            <!-- Asegúrate de agregar las clases 'fa' correspondientes para los íconos -->
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+          </div>
+        </div>
+      </div>
+      <div class="espai-2 p-2 text-center text-black mt-4 bg-white rounded-md">
+        <small>&copy; 2022 <b>Gold Gym</b> - Tots els Drets Reservats.</small>
+      </div>
+    </footer>
+    <script type="module" src="js/pages/LoginPage.js"></script>
+  </body>
+</html>

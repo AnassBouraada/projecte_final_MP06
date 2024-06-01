@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Gold Gym Anass Bouraada" />
+        <meta name="author" content="Anass Bouraada" />
+        <title>GOLD GYM A.B</title>
+        <link rel="shortcut icon" href="Imatges/Favicon.png"
+            type="image/x-icon" />
+        <!-- Afegit Tailwind CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/eb496ab1a0.js"
+            crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./CSS/estils-index.css" />
+
+    <body class="font-sans flex flex-col min-h-screen">
+
+    <!-- Encapçalat (Header) -->
+    <header class="bg-gray-800 p-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-yellow-500 mb-4 md:mb-0 md:mr-4">
+                <h1 class="text-4xl font-serif">GOLD GYM A.B</h1>
+            </div>
+            <div class="flex items-center">
+                <img src="Imatges/Logo_final.svg" class="w-30 h-20 mr-4" alt="Logo Gold Gym" />
+                <div class="flex items-center">
+                    <a href="../src/quiSom.html" id="login" class="bg-yellow-500 text-gray-800 py-2 px-4 rounded mr-2">Login</a>
+                    <button id="logout" class="bg-red-500 text-white py-2 px-4 rounded hidden mx-4">Logout</button>
+                    <a href="../src/classes.html" id="classes" class="bg-blue-500 text-white py-2 px-4 rounded hidden">Clases</a>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <!-- Contingut principal -->
+        <div class="flex flex-col md:flex-row w-full">
+            <!-- Menú lateral (Sidebar) -->
+            <nav class="Sidebar bg-black-900 text-white md:w-60 p-4">
+                <header class="text-2xl text-center bg-blue-800">
+                    GOLD GYM A.B
+                </header>
+                <ul class="mt-4">
+                    <li>
+                        <a href="quiSom.html" class="flex items-center">
+                            <i class="fas fa-qrcode mr-2"></i>Qui Som
+                        </a>
+                    </li>
+                    <li>
+                        <a href="activitats.html" class="flex items-center">
+                            <i class="far fa-envelope mr-2"></i>Activitats
+                        </a>
+                    </li>
+                    <li>
+                        <a href="fonts.html" class="flex items-center">
+                            <i class="fas fa-stream mr-2"></i>Fonts
+                        </a>
+                    </li>
+                    <li>
+                        <a href="comparacio.html" class="flex items-center">
+                            <i class="fas fa-arrows-alt-h"></i>Comparacio
+                        </a>
+                    </li>
+                    <li id="misclases">
+                        <a href="misclases.html">
+                            <i class="fas fa-dumbbell mr-2"></i>Mis Clases
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+                        <div class="flex-grow overflow-hidden">
+                <picture>
+                    <source media="(max-width: 599px)" srcset="Imatges/pics_principal.webp" />
+                    <source media="(min-width: 600px)" srcset="Imatges/imatge_principal.jpg" />
+                    <img src="Imatges/pics_principal.webp" alt="" class="w-full h-full object-cover" />
+                </picture>
+            </div>            
+        </div>
+
+        <!-- Novetats -->
+        <div
+            class="Novetats flex flex-col md:flex-row items-center justify-between bg-gray-400 text-white p-5 space-y-3 md:space-x-3">
+            <div class="text-center mb-4 md:mb-0 md:ml-32">
+                <h1 class="tracking-wider text-3xl font-bold">NOVETATS</h1>
+            </div>
+
+            <div class="flex items-center">
+                <img src="Imatges/Novetats1.webp" alt="Imatge novetats"
+                    class="w-full h-36 object-cover md:w-auto md:h-32" />
+                <div class="ml-4">
+                    <p>Master Class de Nadal</p>
+                </div>
+            </div>
+
+            <div class="flex items-center mt-4 md:mt-0">
+                <img src="Imatges/Novetats2.webp" alt="Imatge novetats"
+                    class="w-full h-32 md:w-auto md:h-28" />
+                <div class="ml-4">
+                    <p>Últimes places de natació per infants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peu de pàgina (Footer) -->
+        <footer class="Footer bg-black text-white p-4 md:p-8">
+            <div
+                class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
+                <div class="mb-4 md:mb-0">
+                    <a href="#">
+                        <img src="Imatges/Logo-Menu.png"
+                            alt="Logo de gold gym" class="w-20 h-20" />
+                    </a>
+                </div>
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl mb-2">SOBRE NOSALTRES</h2>
+                    <p class="mb-2">La instalació es va inaugurar el 23 de abril
+                        de 2017</p>
+                    <p>Gold Gym A.B es un dels millors equipaments d'esport i
+                        benestar de la comarca d'osona</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl mb-2">SEGUEIX-NOS</h2>
+                    <div class="xarxes-socials flex space-x-2">
+                        <!-- Asegúrate de agregar las clases 'fa' correspondientes para los íconos -->
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-instagram"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-youtube"></a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="espai-2 p-2 text-center text-black mt-4 bg-white rounded-md">
+                <small>&copy; 2022 <b>Gold Gym</b> - Tots els Drets
+                    Reservats.</small>
+            </div>
+        </footer>
+        <script src="./js/index.js" type="module"></script>
+    </body>
+</html>
