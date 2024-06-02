@@ -26,14 +26,20 @@ export async function login(username, password) {
 }
 
 export function logout() {
-  // Remove user data from localStorage
   localStorage.removeItem('user');
+  localStorage.removeItem('token');
+  window.location.href = 'login.html';
 }
 
 export function isAuthenticated() {
-  console.log('isAuthenticated');
   const user = JSON.parse(localStorage.getItem('user'));
   return user && user.isLoggedIn === true;
 }
 
+export function getLoggedInUser() {
+  return JSON.parse(localStorage.getItem('user'));
+}
 
+export function updateUserRegistrations(updatedUser) {
+  localStorage.setItem('user', JSON.stringify(updatedUser));
+}

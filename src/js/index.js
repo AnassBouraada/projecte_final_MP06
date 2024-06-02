@@ -6,22 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Agrega el encabezado al inicio del body
     document.body.insertAdjacentHTML('afterbegin', header);
 
-
     const loginButton = document.getElementById("login");
     const logoutButton = document.getElementById("logout");
-    const classesButton = document.getElementById("classes");
     const misClasesLink = document.getElementById("misclases");
+    const llistaClassesLink = document.getElementById("llistaClasses");
 
     if (isAuthenticated()) {
         loginButton.classList.add("hidden");
         logoutButton.classList.remove("hidden");
-        classesButton.classList.remove("hidden");
-        misClasesLink.classList.remove("hidden");
     } else {
         loginButton.classList.remove("hidden");
         logoutButton.classList.add("hidden");
-        classesButton.classList.add("hidden");
-        misClasesLink.classList.add("hidden");
     }
 
     document.getElementById("logout").addEventListener("click", () => {
@@ -29,22 +24,29 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html";
     });
 
-    //comprovem si la ruta es index.htnml per mostrar el botó enrere
-    if (window.location.pathname === "/index.html") {
+    // Comprobamos si la ruta es index.html para mostrar el botón "Enrere"
+    if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
         document.getElementById("backButton").classList.add("hidden");
+
+        if (isAuthenticated()) {
+            misClasesLink.classList.remove("hidden");
+        } else {
+            misClasesLink.classList.add("hidden");
+        }
+
     }
 
-    // Event listener per el botó "Enrere"
+    // Event listener para el botón "Enrere"
     const backButton = document.getElementById('backButton');
     backButton.addEventListener('click', () => {
         window.history.back();
     });
-    
-    // Event listener per el botó "Login"
+
+    // Event listener para el botón "Login"
     loginButton.addEventListener('click', () => {
         window.location.href = 'quiSom.html';
     });
-    
+
     
 
 });
