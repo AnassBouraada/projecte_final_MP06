@@ -7,7 +7,6 @@ const tipoGrupoSelect = document.getElementById('tipoGrupo');
 // Agregar event listeners de tipo 'change' a los selectores de filtro
 tipoGrupoSelect.addEventListener('change', () => filtrarClases());
 
-
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Página cargada');
     try {
@@ -44,7 +43,7 @@ async function mostrarClases(clases) {
                 clasesListContainer.appendChild(claseRow);
             });
             return;
-        } else if (user.isAdmin) {
+        } else {
             document.getElementById('acciones').classList.remove('hidden');
         }
 
@@ -52,31 +51,46 @@ async function mostrarClases(clases) {
         clases.forEach(clase => {
             const claseRow = document.createElement('tr');
             claseRow.innerHTML = `
-            <td class="border px-6 py-4">${clase.name}</td>
-            <td class="border px-6 py-4">${clase.duration}</td>
-            <td class="border px-6 py-4">${clase.type}</td>
-            <td class="border px-6 py-4">${clase.isIndividual ? 'Individual' : 'Grupal'}</td>
-            <td class="border px-6 py-4">
-                ${!user.isAdmin ? `
-                    <button class="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded transition duration-300" data-clase-id="${clase.id}">
-                        ${userApi.registration.includes(clase.id) ? 'Ya está inscrito' : 'Registrar'}
-                    </button>
-                ` : `
-                    <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300" data-clase-id="${clase.id}">Eliminar</button>
-                `}
-            </td>
-        `;
+                <td class="border px-6 py-4">${clase.name}</td>
+                <td class="border px-6 py-4">${clase.duration}</td>
+                <td class="border px-6 py-4">${clase.type}</td>
+                <td class="border px-6 py-4">${clase.isIndividual ? 'Individual' : 'Grupal'}</td>
+                <td class="border px-6 py-4">
+                    ${!user.isAdmin ? `
+                        <button class="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded transition duration-300" data-clase-id="${clase.id}">
+                            ${userApi.registration.includes(clase.id) ? 'Ya está inscrito' : 'Registrar'}
+                        </button>
+                    ` : `
+                        <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300" data-clase-id="${clase.id}">Eliminar</button>
+                    `}
+                </td>
+            `;
                 
-            const registerButton = claseRow.querySelector('button');
-            if (userApi.isAdmin) {
-                registerButton.classList.add('bg-red-500', 'text-white', 'cursor-not-allowed');
-                registerButton.disabled = true;
+            const actionButton = claseRow.querySelector('button');
+
+            if (user.isAdmin) {
+                actionButton.addEventListener('click', async (event) => {
+                    const claseId = parseInt(event.target.dataset.claseId, 10);
+                    console.log('Eliminar clase con ID:', claseId);
+
+                    try {
+                        await fetch(`http://localhost:3001/activites/${claseId}`, {
+                            method: "DELETE",
+                        });
+                        console.log(`Clase con ID ${claseId} eliminada exitosamente.`);
+                        // Recargar la lista de clases
+                        const updatedClases = await fetchFromApi('activites');
+                        mostrarClases(updatedClases);
+                    } catch (error) {
+                        console.error('Error al eliminar la clase:', error);
+                    }
+                });
             } else if (userApi.registration.includes(clase.id)) {
-                registerButton.classList.add('bg-green-500', 'text-white', 'cursor-not-allowed');
-                registerButton.disabled = true;
+                actionButton.classList.add('bg-green-500', 'text-white', 'cursor-not-allowed');
+                actionButton.disabled = true;
             } else {
-                registerButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white');
-                registerButton.addEventListener('click', async (event) => {
+                actionButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white');
+                actionButton.addEventListener('click', async (event) => {
                     const claseId = parseInt(event.target.dataset.claseId, 10);
                     console.log('Registrar clase con ID:', claseId);
 
@@ -105,28 +119,24 @@ async function mostrarClases(clases) {
     }
 }
 
+// Función para filtrar las clases según los selectores de filtro
+async function filtrarClases() {
+    const clases = await fetchFromApi('activites');
+    const tipoGrupoSeleccionado = tipoGrupoSelect.value;
 
-    // Función para filtrar las clases según los selectores de filtro
-    async function filtrarClases() {
+    console.log('Filtrar clases por tipo de grupo:', tipoGrupoSeleccionado);
+    console.log('Clases originales:', clases);
 
-        const clases = await fetchFromApi('activites');
-
-        const tipoGrupoSeleccionado = tipoGrupoSelect.value;
-
-        console.log('Filtrar clases por tipo de grupo:', tipoGrupoSeleccionado);
-
-        console.log('Clases originales:', clases);
-
-        if (tipoGrupoSeleccionado === 'individual') {
-            const clasesFiltradas = clases.filter(clase => clase.isIndividual);
-            console.log('Clases filtradas:', clasesFiltradas);
-            mostrarClases(clasesFiltradas);
-        } else if (tipoGrupoSeleccionado === 'grupal') {
-            const clasesFiltradas = clases.filter(clase => !clase.isIndividual);
-            console.log('Clases filtradas:', clasesFiltradas);
-            mostrarClases(clasesFiltradas);
-        } else {
-            console.log('Clases filtradas:', clases);
-            mostrarClases(clases);
-        }
+    if (tipoGrupoSeleccionado === 'individual') {
+        const clasesFiltradas = clases.filter(clase => clase.isIndividual);
+        console.log('Clases filtradas:', clasesFiltradas);
+        mostrarClases(clasesFiltradas);
+    } else if (tipoGrupoSeleccionado === 'grupal') {
+        const clasesFiltradas = clases.filter(clase => !clase.isIndividual);
+        console.log('Clases filtradas:', clasesFiltradas);
+        mostrarClases(clasesFiltradas);
+    } else {
+        console.log('Clases filtradas:', clases);
+        mostrarClases(clases);
     }
+}

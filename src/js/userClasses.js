@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Página cargada');
     try {
         const user = getLoggedInUser();
-        const userApi = await fetchFromApi(`users/${user.id}`);
+        const userApi = await fetch(`http://localhost:3001/users/${user.id}`);
+        const userData = await userApi.json();
         const clases = await fetchFromApi('activites');
         console.log('Clases obtenidas:', clases);
-        const clasesInscritas = clases.filter(clase => userApi.registration.includes(clase.id));
+        const clasesInscritas = clases.filter(clase => userData.registration.includes(clase.id));
         console.log('Clases inscritas:', clasesInscritas);
         mostrarClases(clasesInscritas);
     } catch (error) {

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutButton = document.getElementById("logout");
     const misClasesLink = document.getElementById("misclases");
     const llistaClassesLink = document.getElementById("llistaClasses");
+    const crearClasses = document.getElementById("crearClasses");
 
     if (isAuthenticated()) {
         loginButton.classList.add("hidden");
@@ -34,8 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
             misClasesLink.classList.add("hidden");
         } else if (isAuthenticated()) {
             misClasesLink.classList.remove("hidden");
+            crearClasses.classList.add("hidden");
         } else {
             misClasesLink.classList.add("hidden");
+            crearClasses.classList.add("hidden");
         }
 
 

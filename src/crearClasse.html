@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Clase</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">Crear Nueva Clase</h1>
+    <form id="crearClaseForm" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="nombreClase" class="block text-gray-700 font-bold mb-2">Nombre de la Clase:</label>
+            <input type="text" id="nombreClase" name="nombreClase" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+            <label for="duracionClase" class="block text-gray-700 font-bold mb-2">Duración (minutos):</label>
+            <input type="number" id="duracionClase" name="duracionClase" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+            <label for="tipoClase" class="block text-gray-700 font-bold mb-2">Tipo de Clase:</label>
+            <select id="tipoClase" name="tipoClase" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option value="acuatica">Acuática</option>
+                <option value="gym">Gym</option>
+                <option value="spinning">Spinning</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="individualClase" class="block text-gray-700 font-bold mb-2">¿Es una clase individual?:</label>
+            <select id="individualClase" name="individualClase" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Crear Clase</button>
+        </div>
+    </form>
+</div>
+
+<script src="./js/index.js" type="module"></script>
+<script src="./js/createClasses.js" type="module"></script>
+
+</body>
+
+</html>`;
+
