@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Página cargada');
     try {
         const user = getLoggedInUser();
+        const userApi = await fetchFromApi(`users/${user.id}`);
         const clases = await fetchFromApi('activites');
         console.log('Clases obtenidas:', clases);
-        const clasesInscritas = clases.filter(clase => user.registration.includes(clase.id));
+        const clasesInscritas = clases.filter(clase => userApi.registration.includes(clase.id));
         console.log('Clases inscritas:', clasesInscritas);
         mostrarClases(clasesInscritas);
     } catch (error) {

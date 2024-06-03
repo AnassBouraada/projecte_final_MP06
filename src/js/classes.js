@@ -45,9 +45,11 @@ function mostrarClases(clases) {
             }
 
             try {
-                const user = getLoggedInUser();
+                const userLocal = getLoggedInUser();
+                const user = await fetchFromApi(`users/${userLocal.id}`);
                 if (!user.registration.includes(claseId)) {
                     user.registration.push(claseId);
+                    console.log('Usuario actualizado con la clase registrada:', user);
                     await fetch(`http://localhost:3001/users/${user.id}`, {
                         method: "PUT",
                         body: JSON.stringify(user), // Actualiza el usuario con el objeto completo
