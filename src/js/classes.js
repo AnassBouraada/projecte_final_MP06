@@ -2,11 +2,9 @@ import fetchFromApi from './fetchAPI.js';
 import { isAuthenticated, getLoggedInUser } from './auth.js';
 
 // Selectores de filtro
-const tipoClaseSelect = document.getElementById('tipoClase');
 const tipoGrupoSelect = document.getElementById('tipoGrupo');
 
 // Agregar event listeners de tipo 'change' a los selectores de filtro
-tipoClaseSelect.addEventListener('change', () => filtrarClases());
 tipoGrupoSelect.addEventListener('change', () => filtrarClases());
 
 
@@ -102,10 +100,8 @@ async function mostrarClases(clases) {
 
         const clases = await fetchFromApi('activites');
 
-        const tipoClaseSeleccionado = tipoClaseSelect.value;
         const tipoGrupoSeleccionado = tipoGrupoSelect.value;
 
-        console.log('Filtrar clases por tipo de clase:', tipoClaseSeleccionado);
         console.log('Filtrar clases por tipo de grupo:', tipoGrupoSeleccionado);
 
         console.log('Clases originales:', clases);
