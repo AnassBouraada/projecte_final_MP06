@@ -1,7 +1,14 @@
-// misClases.js
-
 import fetchFromApi from './fetchAPI.js';
 import { isAuthenticated, getLoggedInUser } from './auth.js';
+
+// Selectores de filtro
+const tipoClaseSelect = document.getElementById('tipoClase');
+const tipoGrupoSelect = document.getElementById('tipoGrupo');
+
+// Agregar event listeners de tipo 'change' a los selectores de filtro
+tipoClaseSelect.addEventListener('change', () => filtrarClases());
+tipoGrupoSelect.addEventListener('change', () => filtrarClases());
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Página cargada');
@@ -22,7 +29,7 @@ async function mostrarClases(clases) {
         return;
     }
 
-    clasesListContainer.innerHTML = '';
+    clasesListContainer.innerHTML = ''; // Limpiar el contenedor de la lista de clases
 
     try {
         const user = getLoggedInUser();
@@ -90,3 +97,29 @@ async function mostrarClases(clases) {
         console.error('Error al obtener el usuario:', error);
     }
 }
+    // Función para filtrar las clases según los selectores de filtro
+    async function filtrarClases() {
+
+        const clases = await fetchFromApi('activites');
+
+        const tipoClaseSeleccionado = tipoClaseSelect.value;
+        const tipoGrupoSeleccionado = tipoGrupoSelect.value;
+
+        console.log('Filtrar clases por tipo de clase:', tipoClaseSeleccionado);
+        console.log('Filtrar clases por tipo de grupo:', tipoGrupoSeleccionado);
+
+        console.log('Clases originales:', clases);
+
+        if (tipoGrupoSeleccionado === 'individual') {
+            const clasesFiltradas = clases.filter(clase => clase.isIndividual);
+            console.log('Clases filtradas:', clasesFiltradas);
+            mostrarClases(clasesFiltradas);
+        } else if (tipoGrupoSeleccionado === 'grupal') {
+            const clasesFiltradas = clases.filter(clase => !clase.isIndividual);
+            console.log('Clases filtradas:', clasesFiltradas);
+            mostrarClases(clasesFiltradas);
+        } else {
+            console.log('Clases filtradas:', clases);
+            mostrarClases(clases);
+        }
+    }

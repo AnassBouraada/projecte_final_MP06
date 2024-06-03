@@ -11,20 +11,48 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans flex flex-col h-screen">
-    <h1 class="text-3xl font-semibold mb-8">Clases Disponibles</h1>
-    <div class="max-w-screen-md overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Nombre</th>
-                    <th scope="col" class="px-6 py-3">Duración</th>
-                    <th scope="col" class="px-6 py-3">Tipo</th>
-                    <th scope="col" class="px-6 py-3">Individual/Grupal</th>
-                    <th scope="col" class="px-6 py-3">Acción</th>
-                </tr>
-            </thead>
-            <tbody id="clases-list"></tbody>
-        </table>
+    <div class="w-full max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Clases Disponibles</h1>
+
+        <!-- Selectores de filtro -->
+        <div class="flex items-center mb-4">
+            <div class="w-1/2 mr-2">
+                <label for="tipoClase" class="block mb-1 text-sm font-medium text-gray-700">Tipo de Clase:</label>
+                <select id="tipoClase" class="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <option value="">Todos</option>
+                    <!-- Aquí puedes generar las opciones de forma dinámica si lo deseas -->
+                    <option value="acuática" id="acuatica">Acuática</option>
+                    <option value="gym" id="gym">Gym</option>
+                    <option value="spinning" id="spinning">Spinning</option>
+                </select>
+            </div>
+            <div class="w-1/2 ml-2">
+                <label for="tipoGrupo" class="block mb-1 text-sm font-medium text-gray-700">Tipo de Grupo:</label>
+                <select id="tipoGrupo" class="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <option value="">Todos</option>
+                    <option value="individual" id="individual">Individual</option>
+                    <option value="grupal" id="grupal">Grupal</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-600">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Nombre</th>
+                        <th scope="col" class="px-6 py-3">Duración</th>
+                        <th scope="col" class="px-6 py-3">Tipo</th>
+                        <th scope="col" class="px-6 py-3">Individual/Grupal</th>
+                        <th scope="col" id="acciones" class="px-6 py-3 hidden">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="clases-list" class="bg-white divide-y divide-gray-200">
+                    <!-- Clases will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="./js/index.js" type="module"></script>
