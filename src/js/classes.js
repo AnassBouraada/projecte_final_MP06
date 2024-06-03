@@ -43,8 +43,9 @@ async function mostrarClases(clases) {
                 clasesListContainer.appendChild(claseRow);
             });
             return;
+        } else {
+            document.getElementById('acciones').classList.remove('hidden');
         }
-
         const userApi = await fetchFromApi(`users/${user.id}`);
         clases.forEach(clase => {
             const claseRow = document.createElement('tr');
