@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function mostrarClases(clases) {
     const clasesListContainer = document.getElementById('clases-list');
-    console.log('clasesListContainer', clasesListContainer);
+    const user = getLoggedInUser();
+
     if (!clasesListContainer) {
         console.error('No se encontró el contenedor de la lista de clases');
         return;
@@ -30,8 +31,8 @@ async function mostrarClases(clases) {
     clasesListContainer.innerHTML = ''; // Limpiar el contenedor de la lista de clases
 
     try {
-        const user = getLoggedInUser();
         if (!isAuthenticated()) {
+            // Mostrar clases sin botón de eliminar para usuarios no autenticados
             clases.forEach(clase => {
                 const claseRow = document.createElement('tr');
                 claseRow.innerHTML = `
@@ -43,27 +44,34 @@ async function mostrarClases(clases) {
                 clasesListContainer.appendChild(claseRow);
             });
             return;
-        } else {
+        } else if (user.isAdmin) {
             document.getElementById('acciones').classList.remove('hidden');
         }
+
         const userApi = await fetchFromApi(`users/${user.id}`);
         clases.forEach(clase => {
             const claseRow = document.createElement('tr');
             claseRow.innerHTML = `
-                <td class="border px-6 py-4">${clase.name}</td>
-                <td class="border px-6 py-4">${clase.duration}</td>
-                <td class="border px-6 py-4">${clase.type}</td>
-                <td class="border px-6 py-4">${clase.isIndividual ? 'Individual' : 'Grupal'}</td>
-                <td class="border px-6 py-4">
-                    <button class="py-2 px-4 rounded transition duration-300" data-clase-id="${clase.id}">
+            <td class="border px-6 py-4">${clase.name}</td>
+            <td class="border px-6 py-4">${clase.duration}</td>
+            <td class="border px-6 py-4">${clase.type}</td>
+            <td class="border px-6 py-4">${clase.isIndividual ? 'Individual' : 'Grupal'}</td>
+            <td class="border px-6 py-4">
+                ${!user.isAdmin ? `
+                    <button class="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded transition duration-300" data-clase-id="${clase.id}">
                         ${userApi.registration.includes(clase.id) ? 'Ya está inscrito' : 'Registrar'}
                     </button>
-                </td>
-            `;
-
+                ` : `
+                    <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300" data-clase-id="${clase.id}">Eliminar</button>
+                `}
+            </td>
+        `;
+                
             const registerButton = claseRow.querySelector('button');
-
-            if (userApi.registration.includes(clase.id)) {
+            if (userApi.isAdmin) {
+                registerButton.classList.add('bg-red-500', 'text-white', 'cursor-not-allowed');
+                registerButton.disabled = true;
+            } else if (userApi.registration.includes(clase.id)) {
                 registerButton.classList.add('bg-green-500', 'text-white', 'cursor-not-allowed');
                 registerButton.disabled = true;
             } else {
@@ -96,6 +104,8 @@ async function mostrarClases(clases) {
         console.error('Error al obtener el usuario:', error);
     }
 }
+
+
     // Función para filtrar las clases según los selectores de filtro
     async function filtrarClases() {
 
