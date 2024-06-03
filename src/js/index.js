@@ -28,11 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
         document.getElementById("backButton").classList.add("hidden");
 
-        if (isAuthenticated()) {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (user && user.isAdmin) {
+            misClasesLink.classList.add("hidden");
+        } else if (isAuthenticated()) {
             misClasesLink.classList.remove("hidden");
         } else {
             misClasesLink.classList.add("hidden");
         }
+
+
+
 
     }
 
