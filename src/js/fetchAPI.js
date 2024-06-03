@@ -1,3 +1,5 @@
+// fetchAPI.js
+
 async function fetchFromApi(endpoint, options = {}) {
   const url = `http://localhost:3001/${endpoint}`;
 
@@ -5,11 +7,10 @@ async function fetchFromApi(endpoint, options = {}) {
     'Content-Type': 'application/json',
   };
 
-  // Default settings if none are provided
   const settings = {
-    method: 'GET', // Default method
-    headers: { ...defaultHeaders, ...options.headers }, // Merge default headers with options.headers
-    ...options, // Spread the rest of the options
+    method: 'GET',
+    headers: { ...defaultHeaders, ...options.headers },
+    ...options,
   };
 
   if (options.body) {

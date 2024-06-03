@@ -36,11 +36,11 @@ function mostrarClases(clases) {
             </td>
         `;
         claseRow.querySelector('button').addEventListener('click', async (event) => {
-            const claseId = parseInt(event.target.dataset.claseId);
+            const claseId = parseInt(event.target.dataset.claseId, 10);
             console.log('Registrar clase con ID:', claseId);
 
             if (!isAuthenticated()) {
-                window.location.href = 'paginaPrincipal.html';
+                window.location.href = 'quiSom.html';
                 return;
             }
 
@@ -48,12 +48,15 @@ function mostrarClases(clases) {
                 const user = getLoggedInUser();
                 if (!user.registration.includes(claseId)) {
                     user.registration.push(claseId);
-                    await fetchFromApi(`users/${user.id}`, {
-                        method: 'PATCH', // Use PATCH to update only the registration field
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ registration: user.registration }),
+                    await fetch(`http://localhost:3001/users/${user.id}`, {
+                        method: "PUT",
+                        body: JSON.stringify(user), // Actualiza el usuario con el objeto completo
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                     });
-                    mostrarClases(clases); // Update the UI after registration
+                    console.log(`Clase con ID ${claseId} registrada exitosamente para el usuario.`);
+                    window.location.href = 'userClasses.html';
                 } else {
                     console.log('El usuario ya está registrado en esta clase');
                 }
