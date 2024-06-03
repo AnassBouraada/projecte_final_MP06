@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,23 +13,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/src/styles.css">
 </head>
+
 <body class="font-sans flex flex-col h-screen">
 
-    <main class="flex-grow p-6">
-        <h1 class="text-3xl font-semibold mb-8">Mis Clases</h1>
-        <div class="max-w-screen-md overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Nombre</th>
-                        <th scope="col" class="px-6 py-3">Duración</th>
-                        <th scope="col" class="px-6 py-3">Tipo</th>
-                        <th scope="col" class="px-6 py-3">Individual/Grupal</th>
-                        <th scope="col" class="px-6 py-3">Acción</th>
-                    </tr>
-                </thead>
-                <tbody id="clases-list"></tbody>
-            </table>
+    <main class="flex-grow p-6 flex items-center justify-center">
+        <div class="max-w-screen-md">
+            <h1 class="text-3xl font-semibold mb-8 text-center">Mis Clases</h1>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Nombre</th>
+                            <th scope="col" class="px-6 py-3">Duración</th>
+                            <th scope="col" class="px-6 py-3">Tipo</th>
+                            <th scope="col" class="px-6 py-3">Individual/Grupal</th>
+                            <th scope="col" class="px-6 py-3">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clases-list"></tbody>
+                </table>
+            </div>
         </div>
     </main>
 
@@ -40,7 +44,7 @@
                 </a>
             </div>
             <div class="mb-4 md:mb-0 text-center md:text-left">
-             a   <h2 class="text-2xl mb-2">SOBRE NOSALTRES</h2>
+                <h2 class="text-2xl mb-2">SOBRE NOSALTRES</h2>
                 <p class="mb-2">La instalació es va inaugurar el 23 de abril de 2017</p>
                 <p>Gold Gym A.B es un dels millors equipaments d'esport i benestar de la comarca d'osona</p>
             </div>
@@ -62,4 +66,5 @@
     <script src="./js/userClasses.js" type="module"></script>
     <script src="./js/index.js" type="module"></script>
 </body>
+
 </html>
